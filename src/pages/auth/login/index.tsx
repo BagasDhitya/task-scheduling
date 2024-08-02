@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { useRouter } from "next/router";
+import useAlert from "@/utils/hooks/useAlert";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -13,6 +14,7 @@ const Login = () => {
   });
   const dispatch = useDispatch();
   const router = useRouter();
+  const showAlert = useAlert();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,12 +35,20 @@ const Login = () => {
         const token = "dummy-token";
         dispatch(setUser(user));
         dispatch(setToken(token));
-        router.push("/dashboard");
+        router.push("/");
       } else {
-        alert("Invalid username or password");
+        showAlert({
+          title: "Error",
+          text: "Invalid username or password",
+          icon: "error",
+        });
       }
     } else {
-      alert("No user found. Please register first.");
+      showAlert({
+        title: "Error",
+        text: "No user found. Please register first.",
+        icon: "error",
+      });
     }
   };
 

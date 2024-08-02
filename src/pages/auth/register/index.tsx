@@ -6,6 +6,7 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { User } from "@/utils/interface/types";
 import { useRouter } from "next/router";
+import useAlert from "@/utils/hooks/useAlert";
 
 const Register = () => {
   const [formData, setFormData] = useState<User>({
@@ -19,6 +20,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
+  const showAlert = useAlert();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,10 +48,15 @@ const Register = () => {
   const handleRegister = () => {
     const { username, email, password, profilePhoto } = formData;
     const user = { username, email, password, profilePhoto };
-    console.log(user);
     const token = "dummy-token";
+    localStorage.setItem("user", JSON.stringify(user));
     dispatch(setUser(user));
     dispatch(setToken(token));
+    showAlert({
+      title: "Success",
+      text: "Registration successful",
+      icon: "success",
+    });
     router.push("/auth/login");
   };
 
