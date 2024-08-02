@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Layout from "../../components/Layout";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import Loading from "../../components/Loading"; // Import the Loading component
+import Layout from "@/components/Layout";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 
 const Settings = () => {
   const [reminder, setReminder] = useState("");

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../components/Layout";
+import Layout from "@/components/Layout";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { RootState } from "../../utils/redux/store";
-import Loading from "../../components/Loading";
-import { setUser, setProfilePhoto } from "../../utils/redux/authSlice";
-import Modal from "../../components/Modal";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
+import { RootState } from "@/utils/redux/store";
+import Loading from "@/components/Loading";
+import { setUser, setProfilePhoto } from "@/utils/redux/authSlice";
+import Modal from "@/components/Modal";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
 
 const Profile = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -62,6 +62,8 @@ const Profile = () => {
       <Loading message={loading.message ? loading.message : "Loading..."} />
     );
   }
+
+  console.log(user?.profilePhoto);
 
   return (
     <ProtectedRoute>
